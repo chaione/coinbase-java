@@ -823,7 +823,7 @@ class CoinbaseImpl implements Coinbase {
     }
 
     @Override
-    public User createUser(User userParams) throws CoinbaseException, IOException {
+    public UserResponse createUser(User userParams) throws CoinbaseException, IOException {
         URL usersUrl;
         try {
             usersUrl = new URL(_baseApiUrl, "users");
@@ -834,11 +834,11 @@ class CoinbaseImpl implements Coinbase {
         Request request = new Request();
         request.setUser(userParams);
 
-        return post(usersUrl, request, UserResponse.class).getUser();
+        return post(usersUrl, request, UserResponse.class);
     }
 
     @Override
-    public User createUser(User userParams, String clientId, String scope) throws CoinbaseException, IOException {
+    public UserResponse createUser(User userParams, String clientId, String scope) throws CoinbaseException, IOException {
         URL usersUrl;
         try {
             usersUrl = new URL(_baseApiUrl, "users");
@@ -851,7 +851,7 @@ class CoinbaseImpl implements Coinbase {
         request.setScopes(scope);
         request.setClientId(clientId);
 
-        return post(usersUrl, request, UserResponse.class).getUser();
+        return post(usersUrl, request, UserResponse.class);
     }
 
     @Override
